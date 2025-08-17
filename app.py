@@ -28,39 +28,112 @@ def load_sample_data():
     global players_data
     
     # Sample data representing real midfielder statistics
+    # Expanded dataset: 20 Premier League midfielders across different playing styles
     sample_players = {
-        'player_id': range(1, 11),
+        'player_id': range(1, 21),
         'player_name': [
+            # Original 10 players
             'Kevin De Bruyne', 'Bruno Fernandes', 'Mason Mount',
             'Declan Rice', 'Rodri', 'Jordan Henderson', 
             'James Maddison', 'Conor Gallagher', 'Yves Bissouma',
-            'Martin Odegaard'
+            'Martin Odegaard',
+            # Additional 10 players for better recommendations
+            'Bernardo Silva', 'Phil Foden', 'Ilkay Gündogan',
+            'Casemiro', 'Fabinho', 'N\'Golo Kanté',
+            'Luka Modrić', 'Bukayo Saka', 'Harvey Elliott',
+            'Alexis Mac Allister'
         ],
         'team': [
+            # Original teams
             'Manchester City', 'Manchester United', 'Chelsea',
             'Arsenal', 'Manchester City', 'Al-Ettifaq',
-            'Tottenham', 'Chelsea', 'Brighton', 'Arsenal'
+            'Tottenham', 'Chelsea', 'Brighton', 'Arsenal',
+            # Additional teams
+            'Manchester City', 'Manchester City', 'Manchester City',
+            'Manchester United', 'Liverpool', 'Chelsea',
+            'Real Madrid', 'Arsenal', 'Liverpool',
+            'Brighton'
         ],
-        'position': ['CAM', 'CAM', 'CAM', 'CDM', 'CDM', 'CM', 'CAM', 'CM', 'CDM', 'CAM'],
+        'position': [
+            # Original positions
+            'CAM', 'CAM', 'CAM', 'CDM', 'CDM', 'CM', 'CAM', 'CM', 'CDM', 'CAM',
+            # Additional positions - more variety for better similarity
+            'CAM', 'CAM', 'CM', 'CDM', 'CDM', 'CM', 'CM', 'RW', 'CAM', 'CM'
+        ],
         
         # Attacking Statistics
-        'goals': [7, 8, 3, 1, 2, 1, 4, 3, 2, 8],
-        'assists': [18, 10, 4, 2, 9, 3, 9, 5, 1, 10],
-        'shots_per_game': [2.1, 2.8, 1.4, 0.5, 1.2, 0.8, 2.3, 1.9, 0.7, 2.5],
-        'key_passes_per_game': [3.2, 2.4, 1.2, 0.8, 1.6, 1.0, 2.1, 1.5, 0.6, 2.8],
+        'goals': [
+            # Original 10 players
+            7, 8, 3, 1, 2, 1, 4, 3, 2, 8,
+            # Additional 10 players
+            9, 11, 5, 1, 2, 3, 6, 12, 3, 4
+        ],
+        'assists': [
+            # Original 10 players  
+            18, 10, 4, 2, 9, 3, 9, 5, 1, 10,
+            # Additional 10 players
+            7, 8, 7, 1, 3, 4, 8, 7, 4, 6
+        ],
+        'shots_per_game': [
+            # Original 10 players
+            2.1, 2.8, 1.4, 0.5, 1.2, 0.8, 2.3, 1.9, 0.7, 2.5,
+            # Additional 10 players
+            2.4, 2.9, 1.8, 0.4, 0.6, 1.1, 1.5, 3.1, 1.6, 1.7
+        ],
+        'key_passes_per_game': [
+            # Original 10 players
+            3.2, 2.4, 1.2, 0.8, 1.6, 1.0, 2.1, 1.5, 0.6, 2.8,
+            # Additional 10 players
+            2.6, 2.2, 2.0, 0.5, 0.7, 1.2, 2.4, 2.3, 1.8, 1.9
+        ],
         
         # Passing Statistics  
-        'pass_accuracy': [87.5, 82.1, 85.2, 89.3, 91.2, 88.7, 83.4, 84.6, 86.8, 88.9],
-        'passes_per_game': [67.8, 58.4, 45.6, 73.2, 89.1, 52.3, 49.7, 56.8, 48.9, 61.2],
-        'long_passes_per_game': [4.2, 3.8, 2.1, 5.6, 7.3, 4.1, 3.2, 2.9, 3.7, 4.0],
+        'pass_accuracy': [
+            # Original 10 players
+            87.5, 82.1, 85.2, 89.3, 91.2, 88.7, 83.4, 84.6, 86.8, 88.9,
+            # Additional 10 players
+            89.1, 86.7, 90.4, 88.2, 89.8, 87.3, 91.5, 84.9, 85.1, 88.0
+        ],
+        'passes_per_game': [
+            # Original 10 players
+            67.8, 58.4, 45.6, 73.2, 89.1, 52.3, 49.7, 56.8, 48.9, 61.2,
+            # Additional 10 players
+            72.4, 64.1, 82.7, 65.3, 71.8, 58.2, 75.6, 52.1, 44.3, 59.7
+        ],
+        'long_passes_per_game': [
+            # Original 10 players
+            4.2, 3.8, 2.1, 5.6, 7.3, 4.1, 3.2, 2.9, 3.7, 4.0,
+            # Additional 10 players
+            3.9, 3.1, 6.2, 4.8, 5.4, 3.5, 5.8, 2.7, 2.4, 3.6
+        ],
         
         # Defensive Statistics
-        'tackles_per_game': [1.2, 1.6, 2.1, 3.4, 2.8, 2.5, 0.9, 2.3, 3.1, 1.4],
-        'interceptions_per_game': [0.8, 1.2, 1.5, 2.1, 1.9, 1.7, 0.6, 1.8, 2.3, 1.0],
+        'tackles_per_game': [
+            # Original 10 players
+            1.2, 1.6, 2.1, 3.4, 2.8, 2.5, 0.9, 2.3, 3.1, 1.4,
+            # Additional 10 players
+            1.8, 1.3, 1.9, 3.2, 2.9, 2.7, 2.1, 0.8, 1.1, 2.2
+        ],
+        'interceptions_per_game': [
+            # Original 10 players
+            0.8, 1.2, 1.5, 2.1, 1.9, 1.7, 0.6, 1.8, 2.3, 1.0,
+            # Additional 10 players
+            1.4, 1.1, 1.6, 2.0, 1.8, 2.1, 1.5, 0.7, 0.9, 1.7
+        ],
         
         # Physical Statistics
-        'distance_covered_per_game': [10.2, 10.8, 11.1, 11.5, 10.9, 10.3, 10.6, 11.3, 11.2, 10.7],
-        'minutes_played': [2340, 2567, 1890, 2456, 2678, 1567, 2123, 1987, 2234, 2456]
+        'distance_covered_per_game': [
+            # Original 10 players
+            10.2, 10.8, 11.1, 11.5, 10.9, 10.3, 10.6, 11.3, 11.2, 10.7,
+            # Additional 10 players
+            10.4, 10.9, 10.8, 11.4, 11.1, 11.6, 10.5, 11.0, 10.3, 11.2
+        ],
+        'minutes_played': [
+            # Original 10 players
+            2340, 2567, 1890, 2456, 2678, 1567, 2123, 1987, 2234, 2456,
+            # Additional 10 players
+            2789, 2234, 2567, 2345, 2123, 1987, 2456, 2678, 1789, 2234
+        ]
     }
     
     players_data = pd.DataFrame(sample_players)
@@ -95,6 +168,17 @@ def calculate_similarity_matrix():
     # Normalize features (important for fair comparison)
     # StandardScaler: mean=0, std=1 for each feature
     normalized_features = scaler.fit_transform(features)
+    """
+    We use StandardScaler: z = (x - μ) / std
+
+    Why:
+    Equal Contribution: Each feature contributes equally to similarity
+    Scale Independence: Goals vs minutes_played treated fairly
+    Standard Practice: Most common in ML literature
+    Zero Mean: Centers data around origin
+    Cosine Friendly: Perfect for cosine similarity calculations
+
+    """
     
     # Calculate cosine similarity matrix
     similarity_matrix = cosine_similarity(normalized_features)
