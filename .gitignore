@@ -151,11 +151,13 @@ ehthumbs.db
 Thumbs.db
 
 # Project specific data files
-*.xlsx
-*.csv
-*.json
-data/
+data/*.xlsx
+data/*.csv
+data/*.json
 datasets/
+
+# Keep data folder structure but ignore content
+!data/.gitkeep
 
 # Streamlit
 .streamlit/
